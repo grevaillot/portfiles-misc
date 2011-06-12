@@ -1,0 +1,25 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id$
+
+PortSystem          1.0
+
+name                cats
+version             1.0
+categories          sysutils comms
+maintainers         nomaintainer
+license             GPL
+description         cats is a cat like utility for serial ports.
+long_description \
+    cats and cats and cats.
+
+platforms           darwin
+
+homepage            https://github.com/grevaillot/cats
+fetch.type          git
+git.url             https://github.com/grevaillot/cats
+
+use_configure no
+
+destroot {
+    copy ${worksrcpath}/cats ${destroot}${prefix}/bin/cats
+}
