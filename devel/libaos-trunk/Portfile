@@ -1,0 +1,29 @@
+PortSystem      1.0
+
+name            libaos-trunk
+version         1.0
+categories      devel
+platforms       darwin
+maintainers     grevaillot openmaintainer
+description     Archos's AOS file library
+
+homepage        http://tuk
+master_sites    ${homepage}
+distname        xz-${version}
+checksums       md5 f2073579b6da2fe35d453adee1aaf1b2 \
+                sha1 9627de3997ddcdb02f8d327e84b2cf1941ecd230 \
+                rmd160 1253ce01746c748c8549effa5041224044919c4e
+
+patchfiles      patch-sysctl-darwin.diff patch-bump-liblzma-major.diff
+
+configure.args  --with-libiconv-prefix=${prefix} --with-libintl-prefix=${prefix}
+
+# the internal "check.h" header conflicts with port check's <check.h>
+configure.cppflags -I${worksrcpath}/src/liblzma/check -I${prefix}/include
+
+destroot.dir    ${worksrcpath}/src/liblzma
+
+platform darwin 10 {
+    configure.args-append --disable-assembler
+}
+
